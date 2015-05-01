@@ -37,6 +37,16 @@ class AlbumCreate(CreateView):
         form.instance.artist = Artist.objects.get(id=self.kwargs['pk'])
         return super(AlbumCreate, self).form_valid(form)
 
+class SongCreate(CreateView):
+    model = Song
+    template_name = 'myartists/form.html'
+    form_class = SongForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.artist = Artist.objects.get(id=self.kwargs['pk'])
+        return super(SongCreate, self).form_valid(form)
+
 def review(request, pk):
     artist = get_object_or_404(Artist, pk=pk)
     new_review = ArtistReview(
