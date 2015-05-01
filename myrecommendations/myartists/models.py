@@ -6,13 +6,9 @@ from datetime import date
 
 class Artist(models.Model):
     name = models.TextField()
-    street = models.TextField(blank=True, null=True)
-    number = models.IntegerField(blank=True, null=True)
     city = models.TextField(default="")
-    zipCode = models.TextField(blank=True, null=True)
-    stateOrProvince = models.TextField(blank=True, null=True)
     country = models.TextField(blank=True, null=True)
-    telephone = models.TextField(blank=True, null=True)
+    style = models.TextField(blank=False)
     web = models.URLField(blank=True, null=True)
     user = models.ForeignKey(User, default=1)
     date = models.DateField(default=date.today)
